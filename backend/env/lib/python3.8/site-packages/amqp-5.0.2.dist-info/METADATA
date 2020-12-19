@@ -1,0 +1,29 @@
+Metadata-Version: 2.1
+Name: amqp
+Version: 5.0.2
+Summary: Low-level AMQP client for Python (fork of amqplib).
+Home-page: http://github.com/celery/py-amqp
+Author: Barry Pederson
+Author-email: pyamqp@celeryproject.org
+Maintainer: Asif Saif Uddin, Matus Valo
+License: BSD
+Keywords: amqp rabbitmq cloudamqp messaging
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Requires-Dist: vine (==5.0.0)
+
+UNKNOWN
+
+
