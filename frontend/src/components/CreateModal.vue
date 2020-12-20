@@ -1,7 +1,7 @@
 <template>
   <div>
     <a href="#" @click.prevent="show" class="hvr-radial-out button-theme"
-      >Çekiliş Yap!</a
+    >Çekiliş Yap!</a
     >
     <modal
       name="create-modal"
@@ -9,7 +9,7 @@
       :min-height="200"
       :scrollable="true"
       :reset="true"
-      width="60%"
+      :width="screenWidth"
       height="auto"
     >
       <div class="header">
@@ -23,7 +23,6 @@
           :key="index"
         >
           <div class="participant-form">
-            <span style="color: #3a4149">{{ participant.id }}.</span>
             <input
               v-model="participant.name"
               type="text"
@@ -43,6 +42,7 @@
               @click="removeParticipant(index)"
             ></i>
           </div>
+          <hr>
         </div>
       </div>
       <div class="footer">
@@ -55,10 +55,10 @@
             href="#"
             @click="addParticipant()"
             class="hvr-radial-out button-theme"
-            >Katılımcı Ekle</a
+          >Katılımcı Ekle</a
           >
           <a href="#" @click="createDraw()" class="hvr-radial-out button-theme"
-            >Çekilişi Yap!</a
+          >Çekilişi Yap!</a
           >
         </div>
       </div>
@@ -72,8 +72,17 @@ import axios from "axios";
 export default {
   data() {
     return {
-      participants: [{ id: 1, name: "", email: "" }],
+      screenWidth: '',
+      participants: [{id: 1, name: "", email: ""}],
     };
+  },
+  created() {
+    console.log(screen.width)
+    if (screen.width < 750) {
+      this.screenWidth = "90%"
+    } else {
+      this.screenWidth = "60%"
+    }
   },
   methods: {
     show() {
@@ -108,6 +117,7 @@ export default {
       });
     },
   },
+
 };
 </script>
 
@@ -134,6 +144,10 @@ export default {
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
 *:focus {
   outline: none;
+}
+
+img {
+  object-fit: contain;
 }
 
 body {
@@ -236,6 +250,13 @@ input[type="submit"]:active {
   transition: 0.1s ease;
 }
 
-@media only screen and (max-width: 755) {
+@media only screen and (max-width: 755px) {
+  .participant-form {
+    flex-direction: column;
+  }
+
+  .participant-form input {
+    width: 100%;
+  }
 }
 </style>
