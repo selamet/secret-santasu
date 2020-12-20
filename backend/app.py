@@ -1,12 +1,16 @@
 from flask import Flask, request, json
 from flask_mail import Mail, Message
 from celery_config import make_celery
+from flask_cors import CORS, cross_origin
 
 import time
 import ast
 import random
 
 app = Flask(__name__)
+
+CORS(app)
+
 app.config.from_object("config")
 app.secret_key = app.config["SECRET_KEY"]
 
