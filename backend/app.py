@@ -29,8 +29,8 @@ celery = make_celery(app)
 def send_mail(data):
     """Function to send emails."""
     with app.app_context():
-        msg = Message("Ping!", sender="admin.ping", recipients=[data["email"]])
-        msg.body = f"{data['name']} sen {data['friend']} e hediye alacaksın :)"
+        msg = Message("Ping!", sender="admin.ping", recipients=[data[0].get('email', {})])
+        msg.body = f"{data[0].get('name', {})} sen {data[1].get('name', {})} e hediye alacaksın :)"
         mail.send(msg)
 
 
@@ -39,13 +39,9 @@ def hello_world():
     email_list = []
     if request.method == "POST":
         if request.get_json():
-            email_list = request.get_json()
-            for email in email_list:
-                print(
-                    f"{email['name']}, {random.choice(email_list)['name']} e hediye alacak."
-                )
-                email['friend'] = random.choice(email_list)['name']
-                send_mail.apply_async(args=[email])
+            data = match_participants(request.get_json())
+            for match in data:
+                send_mail.apply_async(args=[match])
 
         return (
             json.dumps({"success": True}),
@@ -61,3 +57,24 @@ def hello_world():
             404,
             {"ContentType": "application/json"},
         )
+
+
+def match_participants(data):
+    suitable = data[:]
+    accept_array = []
+    arr = []
+
+    for i in data:
+        min_arr = []
+        min_arr.append(i)
+        arr.append(min_arr)
+
+    for index, val in enumerate(arr):
+        suitable2 = suitable[:]
+        suitable2.remove(val[0])
+
+        r = random.choice([a for a in suitable2 if a not in accept_array])
+        accept_array.append(r)
+        val.append(r)
+
+    return arr
