@@ -10,9 +10,13 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
+    "axios": "^0.21.0",
+    "jquery": "^3.5.1",
     "sass-loader": "^10.1.0",
     "vue": "^2.5.11",
-    "vue-js-modal": "^2.0.0-rc.6"
+    "vue-bootstrap4-modal": "^2.2.0",
+    "vue-js-modal": "^2.0.0-rc.6",
+    "vue-ya-semantic-modal": "0.0.3"
   },
   "browserslist": [
     "> 1%",

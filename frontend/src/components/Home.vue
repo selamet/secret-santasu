@@ -1,6 +1,6 @@
 <template>
   <div>
-    <create-modal></create-modal>
+
 
     <div id="wish" class="about-box" style="padding-bottom: 0;">
 
@@ -31,8 +31,8 @@
                   <p>Yılbaşının en keyifli yanlarından biri de bu tür küçük oyunlardır. Yılbaşı hediye çekilişini
                     blabla.com üzerinden kolayca organize edebilir, eşleşme sonucunu herkesin mail adresine
                     gönderebilirsin. </p>
-                  <a href="#" @click="$modal.show('example-adaptive')" class="hvr-radial-out button-theme">Çekiliş
-                    Yap!</a>
+                   <create-modal></create-modal>
+
                 </div>
 
               </div>
@@ -73,9 +73,12 @@
 
 <script>
 
+import CreateModal from "./CreateModal"
+
 export default {
   name: 'app',
   components: {
+    CreateModal
   },
   data() {
     return {
