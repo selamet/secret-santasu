@@ -1,82 +1,114 @@
 <template>
   <div>
-    <a href="" @click.prevent="show" class="hvr-radial-out button-theme">Çekiliş Yap!</a>
+    <a href="#" @click.prevent="show" class="hvr-radial-out button-theme"
+      >Çekiliş Yap!</a
+    >
     <modal
-      :height="500"
-      :width="700"
-      name="create-modal">
+      name="create-modal"
+      :min-width="200"
+      :min-height="200"
+      :scrollable="true"
+      :reset="true"
+      width="60%"
+      height="auto"
+    >
       <div class="header">
         <h4>Mutlu Yıllar...</h4>
       </div>
 
-      <div style="margin-top:10px" class="participants">
-        <div class="participants-form-list" v-for="(participant,index) in participants" :key="index">
-
+      <div style="margin-top: 10px" class="participants">
+        <div
+          class="participants-form-list"
+          v-for="(participant, index) in participants"
+          :key="index"
+        >
           <div class="participant-form">
             <span style="color: #3a4149">{{ participant.id }}.</span>
-            <input v-model="participant.name" type="text" name="name" placeholder="Katılımcı Adı"/>
-            <input v-model="participant.email" type="text" name="email" placeholder="E-posta"/>
-
+            <input
+              v-model="participant.name"
+              type="text"
+              name="name"
+              placeholder="Katılımcı Adı"
+              class="nameInput"
+            />
+            <input
+              v-model="participant.email"
+              type="text"
+              name="email"
+              placeholder="E-posta"
+            />
+            <i
+              class="glyphicon glyphicon-remove"
+              style="cursor: pointer;"
+              @click="removeParticipant(index)"
+            ></i>
           </div>
         </div>
-
-
       </div>
       <div class="footer">
-        <p><span style="color: #e91327">> </span>Eşleşmeler her bir katılımcının mail adresine gönderilecektir.</p>
+        <p>
+          <span style="color: #e91327">> </span>Eşleşmeler her bir katılımcının
+          mail adresine gönderilecektir.
+        </p>
         <div class="buttons">
-          <a href="#" @click="addParticipant()" class="hvr-radial-out button-theme">Katılımcı Ekle</a>
-          <a href="#" @click="createDraw()" class="hvr-radial-out button-theme">Çekilişi Yap!</a>
+          <a
+            href="#"
+            @click="addParticipant()"
+            class="hvr-radial-out button-theme"
+            >Katılımcı Ekle</a
+          >
+          <a href="#" @click="createDraw()" class="hvr-radial-out button-theme"
+            >Çekilişi Yap!</a
+          >
         </div>
       </div>
-
     </modal>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 
 export default {
   data() {
     return {
-      participants: [
-        {id: 1, name: '', email: ''},
-
-      ]
-    }
+      participants: [{ id: 1, name: "", email: "" }],
+    };
   },
   methods: {
     show() {
-      this.$modal.show('create-modal');
+      this.$modal.show("create-modal");
     },
     hide() {
-      this.$modal.hide('create-modal');
+      this.$modal.hide("create-modal");
     },
     addParticipant() {
-      let id = this.participants.length + 1
+      let id = this.participants.length + 1;
       this.participants.push({
-        id: id, name: '', email: ''
-      })
+        id: id,
+        name: "",
+        email: "",
+      });
+    },
+    removeParticipant(index) {
+      this.participants.splice(index, 1);
     },
     findEmptyField() {
       let arr = this.participants.filter(function (a) {
-        if (!(a.name === '' || a.email === '')) {
-          return a
+        if (!(a.name === "" || a.email === "")) {
+          return a;
         }
-      })
-      return arr
+      });
+      return arr;
     },
     createDraw() {
-      let arr = this.findEmptyField()
-      axios.post("http://127.0.0.1:5000", arr).then(response => {
-        console.log(response)
+      let arr = this.findEmptyField();
+      axios.post("http://127.0.0.1:5000", arr).then((response) => {
+        console.log(response);
       });
-    }
-  }
-
-
-}
+    },
+  },
+};
 </script>
 
 
@@ -89,17 +121,15 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .header h4 {
   margin-top: 10px;
   font-size: 42px;
   color: #ffffff;
-  font-family: 'Great Vibes', cursive;
+  font-family: "Great Vibes", cursive;
   font-weight: 300;
 }
-
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
 *:focus {
@@ -109,10 +139,10 @@ export default {
 body {
   margin: 0;
   padding: 0;
-  background: #DDD;
+  background: #ddd;
   font-size: 16px;
   color: #222;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 300;
 }
 
@@ -125,7 +155,6 @@ h1 {
 .participants {
   height: 300px;
   overflow: scroll;
-
 }
 
 .participant-form {
@@ -133,7 +162,6 @@ h1 {
   margin: 2px 10px 0px 10px;
   align-items: center;
   justify-content: center;
-
 }
 
 .participant-form input {
@@ -146,14 +174,12 @@ h1 {
   text-align: center;
 }
 
-
 .buttons {
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 12px;
 }
-
 
 .buttons a {
   margin-right: 10px;
@@ -168,8 +194,8 @@ input[type="password"] {
   width: 220px;
   height: 32px;
   border: none;
-  border-bottom: 1px solid #AAA;
-  font-family: 'Roboto', sans-serif;
+  border-bottom: 1px solid #aaa;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 15px;
   transition: 0.2s ease;
@@ -189,8 +215,8 @@ input[type="submit"] {
   background: #e91327;
   border: none;
   border-radius: 2px;
-  color: #FFF;
-  font-family: 'Roboto', sans-serif;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
   font-weight: 500;
   text-transform: uppercase;
   transition: 0.1s ease;
@@ -210,5 +236,6 @@ input[type="submit"]:active {
   transition: 0.1s ease;
 }
 
-
+@media only screen and (max-width: 755) {
+}
 </style>
