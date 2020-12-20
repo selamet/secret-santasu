@@ -2,6 +2,7 @@ from flask import Flask, request, json
 from flask_mail import Mail, Message
 from celery_config import make_celery
 
+import time
 import ast
 import random
 
@@ -25,7 +26,7 @@ def send_mail(data):
     """Function to send emails."""
     with app.app_context():
         msg = Message("Ping!", sender="admin.ping", recipients=[data["email"]])
-        msg.body = f"{ data['email'] } sen { data['friend'] } e hediye alacaksın :)"
+        msg.body = f"{ data['name'] } sen { data['friend'] } e hediye alacaksın :)"
         mail.send(msg)
 
 
@@ -44,7 +45,6 @@ def hello_world():
                         f"{ email['name'] }, { random.choice(email_list)['name'] } e hediye alacak."
                     )
                     email['friend'] = random.choice(email_list)['name']
-
                     send_mail.apply_async(args=[email])
 
             return (
@@ -61,7 +61,3 @@ def hello_world():
                 404,
                 {"ContentType": "application/json"},
             )
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
