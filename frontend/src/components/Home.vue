@@ -1,9 +1,6 @@
 <template>
   <div>
-
-
-    <div id="wish" class="about-box" style="padding-bottom: 0;">
-
+    <div id="wish" class="about-box" style="padding-bottom: 0">
       <div class="about-a1">
         <div class="container">
           <div class="row">
@@ -16,51 +13,108 @@
           <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
               <div class="row align-items-center about-main-info">
-
                 <div class="col-lg-6 col-md-6 col-sm-12 text_align_center">
                   <div class="full">
-                    <img class="img-responsive" src="src/assets/img/w1.png" alt="#"/>
+                    <img
+                      class="img-responsive"
+                      src="src/assets/img/w1.png"
+                      alt="#"
+                    />
                   </div>
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-sm-12">
-                  <h2><img style="width: 60px;" src="src/assets/img//head_s.png" alt="#"/> Christmas is soon!</h2>
-                  <p>Yeni yıla arkadaşlarıyla birlikte keyifli bir şekilde girmek ve hediyeleşmek isteyenler hemen kağıt
-                    kaleme sarılır. İsimler yazılır, torbaya atılır ve çekiliş yapılır. İsmi eşleşenler birbirlerine
-                    hediye alır.</p>
-                  <p>Yılbaşının en keyifli yanlarından biri de bu tür küçük oyunlardır. Yılbaşı hediye çekilişini
-                    blabla.com üzerinden kolayca organize edebilir, eşleşme sonucunu herkesin mail adresine
-                    gönderebilirsin. </p>
-                   <create-modal></create-modal>
-
+                  <h2>
+                    <img
+                      style="width: 60px"
+                      src="src/assets/img//head_s.png"
+                      alt="#"
+                    />
+                    Christmas is soon!
+                  </h2>
+                  <p>
+                    Yeni yıla arkadaşlarıyla birlikte keyifli bir şekilde girmek
+                    ve hediyeleşmek isteyenler hemen kağıt kaleme sarılır.
+                    İsimler yazılır, torbaya atılır ve çekiliş yapılır. İsmi
+                    eşleşenler birbirlerine hediye alır.
+                  </p>
+                  <p>
+                    Yılbaşının en keyifli yanlarından biri de bu tür küçük
+                    oyunlardır. Yılbaşı hediye çekilişini yilbasicekilisi.tech
+                    üzerinden kolayca organize edebilir, eşleşme sonucunu
+                    herkesin mail adresine gönderebilirsin.
+                  </p>
+                  <create-modal></create-modal>
                 </div>
-
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="about-a1" style="background:#f7f7f7;margin-top: 50px;padding-top: 75px;padding-bottom: 50px;">
+      <div
+        class="about-a1"
+        style="
+          background: #f7f7f7;
+          margin-top: 50px;
+          padding-top: 75px;
+          padding-bottom: 50px;
+        "
+      >
         <div class="container">
           <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
               <div class="row align-items-center about-main-info">
-
                 <div class="col-lg-6 col-md-6 col-sm-12">
-                  <h2><img style="width: 60px;" src="src/assets/img/head_s.png" alt="#"/> Jonh Max Wishes</h2>
-                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the when an unknown..</p>
-                  <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                    totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</p>
-                  <a href="#" class="hvr-radial-out button-theme">Read More</a>
+                  <h2>
+                    <img
+                      style="width: 60px"
+                      src="src/assets/img/head_s.png"
+                      alt="#"
+                    />
+                    Geliştiriciler Hakkında
+                  </h2>
+                  <p>
+                    Projeyi
+                    <span
+                      onclick="window.open('https://twitter.com/selametsamli')"
+                      >Selam Şamlı</span
+                    >
+                    ve
+                    <span
+                      onclick="window.open('https://twitter.com/ilteriskeskin')"
+                      >Ali İlteriş Keskin</span
+                    >
+                    haftasonu projesi olarak geliştirmiştir. Proje açık
+                    kaynaktır ve isteyen herkes bu projeye katkıda bulunabilir.
+                  </p>
+                  <p>
+                    Eğer yılbaşı çekilişinde bize de hediye almak isterseniz
+                    aşağıdaki bağlantılardan hediyenizi gönderebilirsiniz :)
+                  </p>
+                  <a
+                    href="https://github.com/selamet/online-yilbasi-cekilisi/"
+                    target="_blank"
+                    class="hvr-radial-out button-theme"
+                    >GitHub</a
+                  >
+
+                  <a
+                    href="https://kreosus.com/yilbasicekilisi"
+                    target="_blank"
+                    class="hvr-radial-out button-theme"
+                    >Bize de Hediye Al :)</a
+                  >
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-sm-12 text_align_center">
                   <div class="full">
-                    <img class="img-responsive" src="src/assets/img/w2.png" alt="#"/>
+                    <img
+                      class="img-responsive"
+                      src="src/assets/img/w2.png"
+                      alt="#"
+                    />
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
@@ -72,31 +126,25 @@
 
 
 <script>
-
-import CreateModal from "./CreateModal"
+import CreateModal from "./CreateModal";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    CreateModal
+    CreateModal,
   },
   data() {
     return {
-      canBeShown: false
-    }
+      canBeShown: false,
+    };
   },
-
-
-}
-
+};
 </script>
 
 <style>
-
-@import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
-@import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i');
-@import url('https://fonts.googleapis.com/css?family=Great+Vibes');
-
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i");
+@import url("https://fonts.googleapis.com/css?family=Great+Vibes");
 
 .tooltip__wave span {
   position: absolute;
@@ -106,7 +154,6 @@ export default {
   /*	background: url(src/assets/img/wave.svg) repeat-x center center;*/
   background-size: 50% auto;
 }
-
 
 .about-box {
   padding: 70px 0px;
@@ -119,7 +166,7 @@ export default {
 
 .title-box h2 {
   font-size: 75px;
-  font-family: 'Great Vibes', cursive;
+  font-family: "Great Vibes", cursive;
   color: #e91327;
   font-weight: 400;
   padding: 0;
@@ -178,9 +225,8 @@ export default {
 }
 
 .about-main-info a {
-
   border-radius: 2px;
-  transition: .2s;
+  transition: 0.2s;
   padding: 10px 25px;
   background: #e91327;
   color: #ffffff;
@@ -233,8 +279,15 @@ export default {
   transition-timing-function: ease-out;
 }
 
-.hvr-radial-out:hover::before, .hvr-radial-out:focus::before, .hvr-radial-out:active::before {
+.hvr-radial-out:hover::before,
+.hvr-radial-out:focus::before,
+.hvr-radial-out:active::before {
   -webkit-transform: scale(2);
   transform: scale(2);
+}
+
+span {
+  color: #e91327;
+  cursor: pointer;
 }
 </style>
