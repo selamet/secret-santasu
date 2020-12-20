@@ -30,38 +30,34 @@ def send_mail(data):
     """Function to send emails."""
     with app.app_context():
         msg = Message("Ping!", sender="admin.ping", recipients=[data["email"]])
-        msg.body = f"{ data['name'] } sen { data['friend'] } e hediye alacaksın :)"
+        msg.body = f"{data['name']} sen {data['friend']} e hediye alacaksın :)"
         mail.send(msg)
 
 
 @app.route("/", methods=["POST"])
 def hello_world():
     email_list = []
-
     if request.method == "POST":
-        if request.form:
-            r = request.form
-            for i in r:
-                email_list = ast.literal_eval(i)
+        if request.get_json():
+            email_list = request.get_json()
+            for email in email_list:
+                print(
+                    f"{email['name']}, {random.choice(email_list)['name']} e hediye alacak."
+                )
+                email['friend'] = random.choice(email_list)['name']
+                send_mail.apply_async(args=[email])
 
-                for email in email_list:
-                    print(
-                        f"{ email['name'] }, { random.choice(email_list)['name'] } e hediye alacak."
-                    )
-                    email['friend'] = random.choice(email_list)['name']
-                    send_mail.apply_async(args=[email])
-
-            return (
-                json.dumps({"success": True}),
-                200,
-                {"ContentType": "application/json"},
-            )
-        # elif request.args:
-        #     r = request.args.to_dict()
-        #     print(r)
-        else:
-            return (
-                json.dumps({"success": False}),
-                404,
-                {"ContentType": "application/json"},
-            )
+        return (
+            json.dumps({"success": True}),
+            200,
+            {"ContentType": "application/json"},
+        )
+    # elif request.args:
+    #     r = request.args.to_dict()
+    #     print(r)
+    else:
+        return (
+            json.dumps({"success": False}),
+            404,
+            {"ContentType": "application/json"},
+        )
