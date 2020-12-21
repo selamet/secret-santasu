@@ -1,6 +1,26 @@
 **Run API**
 
 * install requirements -> pip3 install -r requirements.txt
+* install Redis and start Redis service
+* create .env file in backend directory
+* Add this info in .env file
+```
+SECRET_KEY = "linuxdegilgnulinux"
+
+# Flask-Mail
+MAIL_SERVER = "smtp.googlemail.com"
+MAIL_PORT = 587
+MAIL_USE_TLS = True
+MAIL_USERNAME = "your_email@gmail.com"
+MAIL_PASSWORD = "your_password"
+
+
+# Celery
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"
+
+```
+
 * open 3 terminal
  * Terminal 1: python3 app.py
  * Terminal 2: celery -A app.celery worker -l info
