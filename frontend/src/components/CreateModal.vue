@@ -79,7 +79,7 @@
       <div style="margin-top: 10px" class="finally-content">
         <p>Tebrikler yılbaşı çekilişiniz başarı ile gerçekleşti. Lütfen mail kutunuzu kontrol ediniz. <br> <small>(Spam
           kutunuzu kontrol etmeyi unutmayınız :)</small></p>
-        <img src="src/assets/img/gift.png" alt="" height="60%" width="aut">
+        <img src="src/assets/img/gift.png" alt="" height="60%" width="60%">
 
         <p>2021 yılında neşeniz, sağlığınız, mutluluğuz ve huzurunuz eksik olmasın. Mutlu yıllar dileriz.</p>
         <p class="logos">
@@ -182,7 +182,6 @@ export default {
     },
     createDraw() {
       let arr = this.findEmptyField();
-
       if (arr && arr.length > 0 && this.mailCheck) {
         axios.post("http://127.0.0.1:5000", arr).then((response) => {
           this.hide();
@@ -249,16 +248,18 @@ h1 {
 }
 
 .finally-content {
-  height: 330px;
+  height: auto;
   display: flex;
   flex-direction: column;
-  text-align: center;
+  align-items: center;
+  justify-content: center;
 
 
 }
 
 .finally-content p {
   color: #222222;
+  text-align: center;
 }
 
 .logos span i {
@@ -281,7 +282,7 @@ h1 {
 
 .last-message {
   background-color: #ddd;
-  height: 100px;
+  height: auto;
   display: flex;
   align-items: center;
   justify-items: center;
