@@ -29,8 +29,8 @@ celery = make_celery(app)
 def send_mail(data):
     """Function to send emails."""
     with app.app_context():
-        msg = Message("Ping!", sender="admin.ping", recipients=[data[0].get('email', {})])
-        msg.body = f"{data[0].get('name', {})} sen {data[1].get('name', {})} e hediye alacaksın :)"
+        msg = Message("Yılbaşı Çekiliş Sonuçları", sender=f"{data[0].get('name', {})}", recipients=[data[0].get('email', {})])
+        msg.body = f"<strong>{data[0].get('name', {})}</strong> sen <strong>{data[1].get('name', {})}</strong> e hediye alacaksın :)"
         mail.send(msg)
 
 
