@@ -63,6 +63,64 @@
         </div>
       </div>
     </modal>
+    <modal
+      name="finally-modal"
+      :min-width="200"
+      :min-height="200"
+      :scrollable="true"
+      :reset="true"
+      :width="screenWidth"
+      height="auto"
+    >
+      <div class="header">
+        <h4>Mutlu Yıllar...</h4>
+      </div>
+
+      <div style="margin-top: 10px" class="finally-content">
+        <p>Tebrikler yılbaşı çekilişiniz başarı ile gerçekleşti. Lütfen mail kutunuzu kontrol ediniz. <br> <small>(Spam
+          kutunuzu kontrol etmeyi unutmayınız :)</small></p>
+        <img src="src/assets/img/gift.png" alt="" height="60%" width="aut">
+
+        <p>2021 yılında neşeniz, sağlığınız, mutluluğuz ve huzurunuz eksik olmasın. Mutlu yıllar dileriz.</p>
+        <p class="logos">
+
+          <span
+            onclick="window.open('https://github.com/selamet/online-yilbasi-cekilisi')"
+          ><i class="fab fa-github"></i></span>
+
+          <span
+            onclick="window.open('mailto:yeniyilcekilisi@gmail.com')"
+          ><i class="fas fa-envelope"></i></span>
+          <span
+            onclick="window.open('https://kreosus.com/yilbasicekilisi')"
+          ><i class="fas fa-gift"></i></span>
+
+        </p>
+
+      </div>
+      <div class="last-message">
+        <p>
+          Projeyi
+          <span
+            onclick="window.open('https://twitter.com/selametsamli')"
+          >Selam Şamlı</span
+          >
+          ve
+          <span
+            onclick="window.open('https://twitter.com/ilteriskeskin')"
+          >Ali İlteriş Keskin</span
+          >
+          haftasonu projesi olarak geliştirmiştir. Proje açık
+          kaynaktır ve isteyen herkes bu projeye katkıda bulunabilir.
+        </p>
+        <p>
+          Eğer yılbaşı bize de hediye almak isterseniz <span
+          onclick="window.open('https://twitter.com/ilteriskeskin')"
+        >buradan </span> gönderebilirsiniz :)<br>
+
+        </p>
+      </div>
+    </modal>
   </div>
 </template>
 
@@ -74,6 +132,7 @@ export default {
     return {
       screenWidth: '',
       participants: [{id: 1, name: "", email: ""}],
+      mailCheck: true
     };
   },
   created() {
@@ -91,6 +150,12 @@ export default {
     hide() {
       this.$modal.hide("create-modal");
     },
+    showFinally() {
+      this.$modal.show("finally-modal");
+    },
+    hideFinally() {
+      this.$modal.hide("finally-modal");
+    },
     addParticipant() {
       let id = this.participants.length + 1;
       this.participants.push({
@@ -103,7 +168,12 @@ export default {
       this.participants.splice(index, 1);
     },
     findEmptyField() {
+      const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
       let arr = this.participants.filter(function (a) {
+        if (!reg.test(a.email) && a.email !== "") {
+          alert(`${a.email} Geçerli bir eposta adresi olarak gözükmüyor.`)
+          this.mailCheck = false;
+        }
         if (!(a.name === "" || a.email === "")) {
           return a;
         }
@@ -112,9 +182,16 @@ export default {
     },
     createDraw() {
       let arr = this.findEmptyField();
-      axios.post("http://127.0.0.1:5000", arr).then((response) => {
-        console.log(response);
-      });
+
+      if (arr && arr.length > 0 && this.mailCheck) {
+        axios.post("http://127.0.0.1:5000", arr).then((response) => {
+          this.hide();
+          this.showFinally();
+        });
+      } else if (arr.length === 0) {
+        alert("Lütfen Tüm alanları doldurun")
+      }
+
     },
   },
 
@@ -171,6 +248,26 @@ h1 {
   overflow: scroll;
 }
 
+.finally-content {
+  height: 330px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+
+}
+
+.finally-content p {
+  color: #222222;
+}
+
+.logos span i {
+  color: #222222;
+  font-size: 24px;
+  margin: 0 5px 0 5px;
+}
+
+
 .participant-form {
   display: flex;
   margin: 2px 10px 0px 10px;
@@ -180,6 +277,22 @@ h1 {
 
 .participant-form input {
   margin: 3px 10px 0px 10px;
+}
+
+.last-message {
+  background-color: #ddd;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  flex-direction: column;
+}
+
+.last-message p {
+  color: #222222;
+  font-size: 13px;
+  margin: 10px 10px 0 10px;
+  text-align: center;
 }
 
 .footer {
