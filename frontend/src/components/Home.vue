@@ -77,7 +77,7 @@
                     Projeyi
                     <span
                       onclick="window.open('https://twitter.com/selametsamli')"
-                      >Selam Şamlı</span
+                      >Selamet Şamlı</span
                     >
                     ve
                     <span
