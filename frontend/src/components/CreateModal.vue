@@ -103,7 +103,7 @@
           Projeyi
           <span
             onclick="window.open('https://twitter.com/selametsamli')"
-          >Selam Şamlı</span
+          >Selamet Şamlı</span
           >
           ve
           <span
@@ -183,7 +183,7 @@ export default {
     createDraw() {
       let arr = this.findEmptyField();
       if (arr && arr.length > 0 && this.mailCheck) {
-        axios.post("http://127.0.0.1:5000", arr).then((response) => {
+        axios.post("https://api.yilbasicekilisi.tech", arr).then((response) => {
           this.hide();
           this.showFinally();
         });
