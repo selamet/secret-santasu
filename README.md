@@ -4,6 +4,13 @@
 * Eşleşmeler rastgele yapılmaktadır.
 * Sonuçlar her bir katılımcının mail adresine gönderilmektedir.
 
+### Katkıda Bulunmak İçin
+
+* Frontend Vue.js ile yazılmıştır
+* Backend Flask ile yazılmıştır
+* Dizinlerin içinde kurulum ve çalıştırma için gerekli adımlar yazılmıştır.
+* Dileyen herkes katkıda bulunabilir :)
+
 #### Geliştiriciler
 * [Ali İlteriş KESKİN](https://github.com/ilteriskeskin)
 * [Selamet ŞAMLI](https://github.com/selamet)
