@@ -23,6 +23,7 @@
           :key="index"
         >
           <div class="participant-form">
+
             <input
               v-model="participant.name"
               type="text"
@@ -36,11 +37,20 @@
               name="email"
               placeholder="E-posta"
             />
+            <input
+              class="address-form"
+              v-if="addressStatus"
+              v-model="participant.address"
+              type="text"
+              name="address"
+              placeholder="Adres"
+            />
             <i
               class="glyphicon glyphicon-remove"
               style="cursor: pointer;"
               @click="removeParticipant(index)"
-            ></i>
+            ></i><br>
+
           </div>
           <hr>
         </div>
@@ -50,7 +60,11 @@
           <span style="color: #e91327">> </span>Eşleşmeler her bir katılımcının
           mail adresine gönderilecektir.
         </p>
+        <div>
+          Adres bilgisi ekle: <input @click="selectAddAddress()" type="checkbox">
+        </div>
         <div class="buttons">
+
           <a
             href="#"
             @click="addParticipant()"
@@ -60,6 +74,9 @@
           <a href="#" @click="createDraw()" class="hvr-radial-out button-theme"
           >Çekilişi Yap!</a
           >
+        </div>
+        <div style="height: 10px">
+
         </div>
       </div>
     </modal>
@@ -132,7 +149,8 @@ export default {
     return {
       screenWidth: '',
       participants: [{id: 1, name: "", email: ""}],
-      mailCheck: true
+      mailCheck: true,
+      addressStatus: false,
     };
   },
   created() {
@@ -158,14 +176,32 @@ export default {
     },
     addParticipant() {
       let id = this.participants.length + 1;
-      this.participants.push({
-        id: id,
-        name: "",
-        email: "",
-      });
+      if (!this.addressStatus) {
+        this.participants.push({
+          id: id,
+          name: "",
+          email: "",
+        });
+      } else {
+        this.participants.push({
+          id: id,
+          name: "",
+          email: "",
+          address: "",
+        });
+      }
+
     },
     removeParticipant(index) {
       this.participants.splice(index, 1);
+    },
+    selectAddAddress() {
+      this.addressStatus = !this.addressStatus;
+      if (this.addressStatus) {
+        this.participants = [{id: 1, name: "", email: "", address: ''}];
+      } else {
+        this.participants = [{id: 1, name: "", email: ""}];
+      }
     },
     findEmptyField() {
       const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
@@ -181,14 +217,19 @@ export default {
       return arr;
     },
     createDraw() {
+      this.mailCheck = true;
       let arr = this.findEmptyField();
-      if (arr && arr.length > 0 && this.mailCheck) {
-        axios.post("https://api.yilbasicekilisi.tech", arr).then((response) => {
+      if (arr && arr.length > 1 && this.mailCheck) {
+        axios.post("http://127.0.0.1:5000", arr).then((response) => {
           this.hide();
           this.showFinally();
+          this.addressStatus = false;
+          this.participants = [{id: 1, name: "", email: ""}];
         });
       } else if (arr.length === 0) {
         alert("Lütfen Tüm alanları doldurun")
+      } else if (arr.length === 1) {
+        alert("Tek başına çekiliş yapamazsın :(")
       }
 
     },
@@ -298,7 +339,7 @@ h1 {
 
 .footer {
   background-color: #ddd;
-  height: 150px;
+  height: auto;
   text-align: center;
 }
 
@@ -373,4 +414,6 @@ input[type="submit"]:active {
     width: 100%;
   }
 }
+
+
 </style>
