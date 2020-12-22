@@ -31,17 +31,20 @@ def send_mail(data):
     with app.app_context():
         msg = Message("Yeni Yıl Çekiliş Sonuçları :)", sender="admin.ping", recipients=[data[0].get('email', {})])
         # msg.body = f"{data[0].get('name', {})} sen {data[1].get('name', {})} e hediye alacaksın :)"
+        address = f"<strong> Adres:</strong> {data[1].get('address', {})} " if data[1].get('address', {}) else ""
+
         msg.body = f"""<h1 style="text-align: center; color:#e91327">Mutlu Yıllar</h2>
         <br>
     <p style="text-align: center;">2021 yılında neşeniz, sağlığınız, mutluluğuz ve huzurunuz eksik olmasın. Mutlu yıllar dileriz.</p>
     <br>
     <div style="text-align: center;">
         <p><span style="font-size: 53px; color: #e91327;">{data[0].get('name', {})} > {data[1].get('name', {})} </span>
-        <p>Adres: {data[1].get('address', {})}</p>
-        <br>
-        <br>
+        <p></p>
         <br>
         Hediye alacaksın.
+        <br> 
+        <br> 
+        {address}
         </p>
     </div>"""
         msg.html = msg.body
