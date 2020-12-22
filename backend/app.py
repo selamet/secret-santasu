@@ -36,7 +36,8 @@ def send_mail(data):
     <p style="text-align: center;">2021 yılında neşeniz, sağlığınız, mutluluğuz ve huzurunuz eksik olmasın. Mutlu yıllar dileriz.</p>
     <br>
     <div style="text-align: center;">
-        <p><span style="font-size: 53px; color: #e91327;">{data[0].get('name', {})} > {data[1].get('name', {})} </span> 
+        <p><span style="font-size: 53px; color: #e91327;">{data[0].get('name', {})} > {data[1].get('name', {})} </span>
+        <p>Adres: {data[1].get('address', {})}</p>
         <br>
         <br>
         <br>
