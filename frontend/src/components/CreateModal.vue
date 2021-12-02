@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a href="#" @click.prevent="show" class="hvr-radial-out button-theme"
+    <a href="#" @click.prevent="show" class="hvr-radial-out button-theme draw-button"
     >Çekiliş Yap!</a
     >
     <modal
@@ -36,9 +36,10 @@
               type="text"
               name="email"
               placeholder="E-posta"
+              class="nameInput"
             />
             <input
-              class="address-form"
+              class="nameInput"
               v-if="addressStatus"
               v-model="participant.address"
               type="text"
@@ -60,18 +61,30 @@
           <span style="color: #e91327">> </span>Eşleşmeler her bir katılımcının
           mail adresine gönderilecektir.
         </p>
-        <div>
-          Adres bilgisi ekle: <input @click="selectAddAddress()" type="checkbox">
+        <div class="add-address">
+          <div class="add-address-btn">
+            <button
+              :class  ="[{'active-class' : addressStatus}, 'add-address-btn-item']" 
+              @click  ="selectAddAddress(true)">
+               + Adres Bilgisi Ekle
+            </button>
+            <button
+              :class  ="[{'active-class' : !addressStatus}, 'add-address-btn-item']" 
+              @click  ="selectAddAddress(false)">
+              Adres Bilgisi Ekleme
+            </button>
+          </div>
         </div>
-        <div class="buttons">
-
+        <div class="add-participant">
           <a
             href="#"
             @click="addParticipant()"
-            class="hvr-radial-out button-theme"
+            class=""
           >Katılımcı Ekle</a
           >
-          <a href="#" @click="createDraw()" class="hvr-radial-out button-theme"
+        </div>
+        <div class="buttons">
+          <a href="#" @click="createDraw()" class="hvr-radial-out button-theme start-draw"
           >Çekilişi Yap!</a
           >
         </div>
@@ -195,13 +208,11 @@ export default {
     removeParticipant(index) {
       this.participants.splice(index, 1);
     },
-    selectAddAddress() {
-      this.addressStatus = !this.addressStatus;
-      if (this.addressStatus) {
-        this.participants = [{id: 1, name: "", email: "", address: ''}];
-      } else {
-        this.participants = [{id: 1, name: "", email: ""}];
-      }
+    selectAddAddress(hasAddress) {
+      this.addressStatus = hasAddress;
+      this.addressStatus
+        ? this.participants.map(item => item.address = '')
+        : this.participants.map(item => delete item.address)
     },
     findEmptyField() {
       const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
@@ -240,11 +251,114 @@ export default {
 
 
 <style>
+
+.active-class {
+  background: #ccc!important;
+  outline: none!important;
+  text-decoration: underline!important;
+}
+
+.start-draw {
+  width: calc(80% + 20px);
+  background: black;
+  margin: 20px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: white;
+}
+
+.draw-button {
+  width: 100%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  background: #e91327;
+  color: white;
+}
+
+.nameInput {
+  border: 1px solid lightgray;
+  width: 40%;
+  margin: 0;
+  padding: 5px 10px;
+  height: 50px;
+  border-radius: 4px;
+  color: gray;
+}
+
+.add-address {
+  /* position: absolute;
+  top: 0;
+  right: 0;
+  height: 100px;
+  display: flex;
+  align-items: center; */
+}
+
+.add-address-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.add-address-btn-item {
+  background: #ebebeb;
+  color: gray;
+  border: none;
+  width: 90px;
+  color: #00000090;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  width: 40%;
+  height: 50px;
+}
+
+.add-address-btn-item:first-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.add-address-btn-item:last-child {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.add-participant {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.add-participant a {
+  border: 1px solid white;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  padding: 5px 10px;
+  margin-right: 20px;
+}
+
 .header {
   margin: 0;
   padding: 0;
-  background-color: #e91327;
-  height: 60px;
+  height: 100px;
+  background-color: #ccc;
+  /* height: 60px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -353,7 +467,7 @@ h1 {
 .buttons a {
   margin-right: 10px;
 }
-
+/* 
 input[type="text"],
 input[type="password"] {
   display: block;
@@ -413,7 +527,7 @@ input[type="submit"]:active {
   .participant-form input {
     width: 100%;
   }
-}
+} */
 
 
 </style>

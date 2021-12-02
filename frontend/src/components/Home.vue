@@ -224,7 +224,7 @@ export default {
   font-weight: 600;
 }
 
-.about-main-info a {
+/* .about-main-info a {
   border-radius: 2px;
   transition: 0.2s;
   padding: 10px 25px;
@@ -234,7 +234,7 @@ export default {
   font-size: 15px;
   border-radius: 0 15px;
   margin-top: 10px;
-}
+} */
 
 .about-main-info a:hover {
   color: #ffffff;
