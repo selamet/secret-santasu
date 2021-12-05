@@ -23,13 +23,12 @@
           :key="index"
         >
           <div class="participant-form">
-
             <div class="default-form">
               <input
                 v-model="participant.name"
                 type="text"
                 name="name"
-                placeholder="Katılımcı Adı"
+                :placeholder="`${index+1}. Katılımcı Adı`"
                 class="nameInput"
               />
               <input
@@ -211,7 +210,7 @@ export default {
 
     },
     removeParticipant(index) {
-      this.participants.splice(index, 1);
+      if (this.participants.length > 1) this.participants.splice(index, 1);
     },
     selectAddAddress(hasAddress) {
       this.addressStatus = hasAddress;
