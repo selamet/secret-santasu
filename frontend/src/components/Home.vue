@@ -156,7 +156,13 @@ export default {
 }
 
 .about-box {
-  padding: 70px 0px;
+  /* padding: 70px 0px; */
+}
+
+.about-a1 {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
 .title-box {
