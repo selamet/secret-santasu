@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a href="#" @click.prevent="show" class="hvr-radial-out button-theme"
+    <a href="#" @click.prevent="show" class="hvr-radial-out button-theme draw-button"
     >Çekiliş Yap!</a
     >
     <modal
@@ -23,58 +23,75 @@
           :key="index"
         >
           <div class="participant-form">
-
-            <input
-              v-model="participant.name"
-              type="text"
-              name="name"
-              placeholder="Katılımcı Adı"
-              class="nameInput"
-            />
-            <input
-              v-model="participant.email"
-              type="text"
-              name="email"
-              placeholder="E-posta"
-            />
-            <input
-              class="address-form"
-              v-if="addressStatus"
-              v-model="participant.address"
-              type="text"
-              name="address"
-              placeholder="Adres"
-            />
-            <i
-              class="glyphicon glyphicon-remove"
-              style="cursor: pointer;"
-              @click="removeParticipant(index)"
-            ></i><br>
-
+            <div class="default-form">
+              <input
+                v-model="participant.name"
+                type="text"
+                name="name"
+                :placeholder="`${index+1}. Katılımcı Adı`"
+                class="nameInput"
+              />
+              <input
+                v-model="participant.email"
+                type="text"
+                name="email"
+                placeholder="E-posta"
+                class="nameInput"
+              />
+              <button
+                class="remove-participant"
+                style="cursor: pointer;"
+                @click="removeParticipant(index)"
+              >
+                <span>Sil</span>
+                <span>x</span>
+              </button>
+            </div>
+            <div class="form-with-address">
+              <textarea
+                class="nameInput text-area"
+                v-if="addressStatus"
+                v-model="participant.address"
+                name="address"
+                placeholder="Adres"
+              />
+            </div>
           </div>
-          <hr>
+          <span class="list-fix"></span>
         </div>
       </div>
       <div class="footer">
-        <p>
-          <span style="color: #e91327">> </span>Eşleşmeler her bir katılımcının
-          mail adresine gönderilecektir.
-        </p>
-        <div>
-          Adres bilgisi ekle: <input @click="selectAddAddress()" type="checkbox">
+        <div class="add-address">
+          <div class="add-address-btn">
+            <button
+              :class  ="[{'active-class' : addressStatus}, 'add-address-btn-item']" 
+              @click  ="selectAddAddress(true)">
+               + Adres Bilgisi Ekle
+            </button>
+            <button
+              :class  ="[{'active-class' : !addressStatus}, 'add-address-btn-item']" 
+              @click  ="selectAddAddress(false)">
+              Adres Bilgisi Ekleme
+            </button>
+          </div>
         </div>
-        <div class="buttons">
-
+        <div class="add-participant">
           <a
             href="#"
             @click="addParticipant()"
-            class="hvr-radial-out button-theme"
-          >Katılımcı Ekle</a
+          >+ Katılımcı Ekle</a
           >
-          <a href="#" @click="createDraw()" class="hvr-radial-out button-theme"
+        </div>
+        <div class="buttons">
+          <a href="#" @click="createDraw()" class="hvr-radial-out button-theme start-draw"
           >Çekilişi Yap!</a
           >
         </div>
+
+        <p class="info-text">
+          Eşleşmeler her bir katılımcının
+          mail adresine gönderilecektir.
+        </p>
         <div style="height: 10px">
 
         </div>
@@ -193,15 +210,13 @@ export default {
 
     },
     removeParticipant(index) {
-      this.participants.splice(index, 1);
+      if (this.participants.length > 1) this.participants.splice(index, 1);
     },
-    selectAddAddress() {
-      this.addressStatus = !this.addressStatus;
-      if (this.addressStatus) {
-        this.participants = [{id: 1, name: "", email: "", address: ''}];
-      } else {
-        this.participants = [{id: 1, name: "", email: ""}];
-      }
+    selectAddAddress(hasAddress) {
+      this.addressStatus = hasAddress;
+      this.addressStatus
+        ? this.participants.map(item => item.address = '')
+        : this.participants.map(item => delete item.address)
     },
     findEmptyField() {
       const reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
@@ -240,11 +255,178 @@ export default {
 
 
 <style>
+
+.active-class {
+  background: #3A4149!important;
+  outline: none!important;
+  text-decoration: underline!important;
+  color: white!important;
+}
+
+.start-draw {
+  width: 80%;
+  margin: 20px 0 10px 10px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  background: #38c172;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  height: 60px;
+}
+
+.draw-button {
+  width: 100%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  background: #e91327;
+  color: white;
+}
+
+.nameInput {
+  border: 1px solid lightgray;
+  width: 40%;
+  margin: 0;
+  padding: 5px 10px;
+  height: 50px;
+  border-radius: 4px;
+  color: #3A4149;
+  background: #f4f7fa;
+}
+
+.text-area {
+  width: 100%;
+  display: flex;
+  height: auto;
+  margin: 20px;
+  width: 100%;
+}
+
+.default-form {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 20px 0 10px;
+}
+
+.form-with-address {
+  width: 100%;
+  display: flex;
+}
+
+.list-fix {
+  display: flex;
+  widows: 100%;
+  height: 30px;
+}
+
+.add-address {
+  /* position: absolute;
+  top: 0;
+  right: 0;
+  height: 100px;
+  display: flex;
+  align-items: center; */
+}
+
+.add-address-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.add-address-btn-item {
+  background: #ebebeb;
+  color: #3A4149;
+  border: none;
+  width: 90px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  width: 40%;
+  height: 50px;
+}
+
+.add-address-btn-item:first-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.add-address-btn-item:last-child {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.add-participant {
+  width: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+
+.add-participant a {
+  border: 1px solid #666666;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #3A4149;
+  padding: 5px 10px;
+  margin-right: 20px;
+}
+
+.add-participant a:hover {
+  color: currentColor;
+}
+
+.remove-participant {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  background: #ec5161;
+  border: 1px solid white;
+  height: 50px;
+  border: none;
+  width: 60px;
+}
+
+.remove-participant span {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.remove-participant span:last-child {
+  padding-bottom: 2px;
+  padding-left: 4px;
+}
+
 .header {
   margin: 0;
   padding: 0;
-  background-color: #e91327;
-  height: 60px;
+  margin-bottom: 30px;
+  height: 100px;
+  background-color: #fff;
+  box-shadow: 0 5px 10px #f4f7fa;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -253,9 +435,15 @@ export default {
 .header h4 {
   margin-top: 10px;
   font-size: 42px;
-  color: #ffffff;
+  color: #3A4149;
   font-family: "Great Vibes", cursive;
   font-weight: 300;
+}
+
+.info-text {
+  color: #3A4149;
+  font-weight: 600;
+  opacity: 0.8;
 }
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
@@ -272,7 +460,7 @@ body {
   padding: 0;
   background: #ddd;
   font-size: 16px;
-  color: #222;
+  color: #3A4149;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
 }
@@ -312,13 +500,15 @@ h1 {
 
 .participant-form {
   display: flex;
-  margin: 2px 10px 0px 10px;
+  flex-wrap: wrap;
+  /* margin: 2px 10px 0px 10px; */
   align-items: center;
   justify-content: center;
 }
 
 .participant-form input {
-  margin: 3px 10px 0px 10px;
+  width: calc(50% - 30px);
+  margin: 0 10px;
 }
 
 .last-message {
@@ -338,7 +528,8 @@ h1 {
 }
 
 .footer {
-  background-color: #ddd;
+  padding-top: 30px;
+  background: #fff;
   height: auto;
   text-align: center;
 }
@@ -354,66 +545,27 @@ h1 {
   margin-right: 10px;
 }
 
-input[type="text"],
-input[type="password"] {
-  display: block;
-  box-sizing: border-box;
-  margin-bottom: 20px;
-  padding: 4px;
-  width: 220px;
-  height: 32px;
-  border: none;
-  border-bottom: 1px solid #aaa;
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-size: 15px;
-  transition: 0.2s ease;
-}
-
-input[type="text"]:focus,
-input[type="password"]:focus {
-  border-bottom: 2px solid #e91327;
-  color: black;
-  transition: 0.2s ease;
-}
-
-input[type="submit"] {
-  margin-top: 28px;
-  width: 120px;
-  height: 32px;
-  background: #e91327;
-  border: none;
-  border-radius: 2px;
-  color: #fff;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  text-transform: uppercase;
-  transition: 0.1s ease;
-  cursor: pointer;
-}
-
-input[type="submit"]:hover,
-input[type="submit"]:focus {
-  opacity: 0.8;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  transition: 0.1s ease;
-}
-
-input[type="submit"]:active {
-  opacity: 1;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-  transition: 0.1s ease;
-}
-
-@media only screen and (max-width: 755px) {
-  .participant-form {
-    flex-direction: column;
-  }
-
-  .participant-form input {
+@media (max-width: 991px) {
+  .add-participant {
     width: 100%;
+    top: 80px;
+  }
+  .add-participant a {
+    width: 100%;
+    margin: 0 20px;
+  }
+
+  .header {
+    height: 160px;
+  }
+
+  .header h4 {
+    font-size: 32px;
+  }
+
+  .add-address-btn-item {
+    font-size: 12px;
   }
 }
-
 
 </style>
