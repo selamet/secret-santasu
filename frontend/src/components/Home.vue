@@ -44,7 +44,7 @@
                     üzerinden kolayca organize edebilir, eşleşme sonucunu
                     herkesin mail adresine gönderebilirsin.
                   </p>
-                  <create-modal></create-modal>
+                  <router-link class="go-form-button" to="/participants-form" tag= "a">Çekiliş Yap</router-link>
                 </div>
               </div>
             </div>
@@ -79,35 +79,38 @@
                       onclick="window.open('https://twitter.com/selametsamli')"
                       >Selamet Şamlı</span
                     >
-                    ve
+                    ,
                     <span
                       onclick="window.open('https://twitter.com/ilteriskeskin')"
                       >Ali İlteriş Keskin</span
+                    > ve
+                    <span
+                      onclick="window.open('https://twitter.com/uguryuceee')"
+                      >Uğur Yüce</span
                     >
                     haftasonu projesi olarak geliştirmiştir. Proje açık
                     kaynaktır ve isteyen herkes bu projeye katkıda bulunabilir.
                   </p>
                   <p>
                     Eğer yılbaşı çekilişinde bize de hediye almak isterseniz
-                    aşağıdaki bağlantılardan hediyenizi gönderebilirsiniz :)
+                    aşağıdaki bağlantılardan hediyenizi gönderebilirsiniz
                   </p>
                   <a
                     href="https://github.com/selamet/online-yilbasi-cekilisi/"
+                    class="github-button"
                     target="_blank"
-                    class="hvr-radial-out button-theme"
                     >GitHub</a
                   >
 
                   <a
                     href="https://kreosus.com/yilbasicekilisi"
                     target="_blank"
-                    class="hvr-radial-out button-theme"
-                    >Bize de Hediye Al :)</a
-                  >
+                    class="donate-button"
+                    >Bize de Hediye Al</a>
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-sm-12 text_align_center">
-                  <div class="full">
+                  <div class="last-img">
                     <img
                       class="img-responsive"
                       src="src/assets/img/w2.png"
@@ -156,7 +159,44 @@ export default {
 }
 
 .about-box {
-  /* padding: 70px 0px; */
+  min-height: 100vh;
+}
+
+.go-form-button {
+  width: 100%;
+  background: #e91327;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  border-radius: 4px;
+  color: white;
+  font-weight: 600;
+}
+
+.github-button {
+  width: auto;
+  height: 50px;
+  background: #e91327;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 600;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.donate-button {
+  width: auto;
+  height: 50px;
+  border: 1px solid #e91327;
+  color: #e91327;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  border-radius: 4px;
 }
 
 .about-a1 {
@@ -242,6 +282,8 @@ export default {
   margin-top: 10px;
 } */
 
+
+
 .about-main-info a:hover {
   color: #ffffff;
 }
@@ -295,5 +337,25 @@ export default {
 span {
   color: #e91327;
   cursor: pointer;
+}
+
+@media (max-width: 991px) {
+    .about-box {
+      padding-top: 30px;
+    }
+    .img-responsive {
+      object-fit: contain;
+    }
+
+    .last-img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 40px;
+    }
+
+    .last-img img {
+      height: 300px;
+    }
 }
 </style>
