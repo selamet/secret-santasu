@@ -14,3 +14,4 @@
 #### Geliştiriciler
 * [Ali İlteriş KESKİN](https://github.com/ilteriskeskin)
 * [Selamet ŞAMLI](https://github.com/selamet)
+* [Uğur YÜCE](https://github.com/uguryuce)
