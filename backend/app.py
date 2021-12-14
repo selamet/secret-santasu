@@ -14,6 +14,7 @@ CORS(app)
 app.config.from_object("config")
 app.secret_key = app.config["SECRET_KEY"]
 
+
 # set up Flask-Mail Integration
 mail = Mail(app)
 
@@ -46,7 +47,7 @@ def send_mail(data):
                     </tr>
                     """
 
-        msg.mod= f"""
+        msg.body= f"""
         <table style="width:100%; margin-bottom:40px">
                 <tr>
                     <td style="text-align:center; margin-left:auto; margin-right:auto; padding-top: 40px">
