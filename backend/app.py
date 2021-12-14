@@ -39,7 +39,7 @@ def send_mail(data):
                         <td style="text-align:center; margin-left:auto; margin-right:auto; padding-top: 20px">
                             <div style="background: #EFEFEF; padding: 10px 20px;border-radius: 4px;width: 70%;margin-left: auto;margin-right: auto;">
                                 <p style="text-align:center; color:#3A4149; font-size:18px; font-weight:300; padding-top:10px">
-                                    <span style="font-weight:400">Adres Bilgisi : </span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, dignissimos.
+                                    <span style="font-weight:400">Adres Bilgisi : </span> {data[1].get('address', "")}
                                 </p>
                             </div>
                         </td>
