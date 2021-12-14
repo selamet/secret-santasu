@@ -174,6 +174,10 @@ export default {
   font-weight: 600;
 }
 
+.go-form-button:hover {
+  color: white;
+}
+
 .github-button {
   width: auto;
   height: 50px;
@@ -185,6 +189,10 @@ export default {
   font-weight: 600;
   border-radius: 4px;
   margin-bottom: 10px;
+}
+
+.github-button:hover {
+  color: white;
 }
 
 .donate-button {
@@ -264,28 +272,14 @@ export default {
   color: #ffffff;
 }
 
+.donate-button:hover {
+  color: #e91327;
+}
+
 .about-main-info h2 {
   font-size: 45px;
   color: #e91327;
   font-weight: 600;
-}
-
-/* .about-main-info a {
-  border-radius: 2px;
-  transition: 0.2s;
-  padding: 10px 25px;
-  background: #e91327;
-  color: #ffffff;
-  font-weight: 300;
-  font-size: 15px;
-  border-radius: 0 15px;
-  margin-top: 10px;
-} */
-
-
-
-.about-main-info a:hover {
-  color: #ffffff;
 }
 
 .about-main-info div.full > img {
