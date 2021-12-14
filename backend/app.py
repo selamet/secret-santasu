@@ -32,17 +32,19 @@ def send_mail(data):
         msg = Message("Yeni Yıl Çekiliş Sonuçları :)", sender="admin.ping", recipients=[data[0].get('email', {})])
         # msg.body = f"{data[0].get('name', {})} sen {data[1].get('name', {})} e hediye alacaksın :)"
 
-        address = f"""
-                 <tr>
-                    <td style="text-align:center; margin-left:auto; margin-right:auto; padding-top: 20px">
-                        <div style="background: #EFEFEF; padding: 10px 20px;border-radius: 4px;width: 70%;margin-left: auto;margin-right: auto;">
-                            <p style="text-align:center; color:#3A4149; font-size:18px; font-weight:300; padding-top:10px">
-                                <span style="font-weight:400">Adres Bilgisi : </span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, dignissimos.
-                            </p>
-                        </div>
-                    </td>
-                </tr>
-        """ if {data[1].get('address', {})} if data[1].get('address', {}) else ""
+        address = ''
+        if data[1].get('address', None):
+            address = f"""
+                    <tr>
+                        <td style="text-align:center; margin-left:auto; margin-right:auto; padding-top: 20px">
+                            <div style="background: #EFEFEF; padding: 10px 20px;border-radius: 4px;width: 70%;margin-left: auto;margin-right: auto;">
+                                <p style="text-align:center; color:#3A4149; font-size:18px; font-weight:300; padding-top:10px">
+                                    <span style="font-weight:400">Adres Bilgisi : </span> Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, dignissimos.
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    """
 
         msg.mod= f"""
         <table style="width:100%; margin-bottom:40px">
