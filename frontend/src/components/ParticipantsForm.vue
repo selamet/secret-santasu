@@ -365,7 +365,9 @@ export default {
 .participants-form-header {
     position: fixed;
     background: #F3F4F6;
-    width: 70%;
+    width: 100%;
+    padding-left: 15%;
+    padding-right: 15%;
     display: flex;
     height: 100px;
     align-items: center;
@@ -436,6 +438,7 @@ export default {
 .participant-actions {
     display: flex;
     flex-wrap: nowrap;
+    justify-content: flex-end;
 }
 
 .remove-participant {
@@ -567,6 +570,11 @@ export default {
     font-size: 16px;
     letter-spacing: 1px;
     font-weight: 500;
+}
+
+.create-button-item:hover {
+    color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
 }
 
 .info-text {
@@ -880,7 +888,9 @@ h1 {
 @media (max-width: 991px) {
 
     .participants-form-header {
-        width: 90%;
+        width: 100%;
+        padding-left: 5%;
+        padding-right: 5%;
     }
 
     .participants-form-list {
@@ -909,6 +919,24 @@ h1 {
         justify-content: center;
     }
 
+    .remove-participant {
+        width: 70%;
+        max-width: 120px;
+    }
+
+    .remove-participant span {
+        font-size: 11px;
+        white-space: nowrap;
+    }
+
+    .hide-participant {
+        width: 30%;
+    }
+
+    .hide-participant span {
+        font-size: 14px;
+    }
+
     .header {
         height: 160px;
     }
@@ -922,12 +950,17 @@ h1 {
     }
 
     .participants-number {
+        display: flex;
         flex-wrap: wrap;
     }
 
     .p-info-text {
         display: flex;
-        width: 100%;
+        width: 50%;
+    }
+
+    .participant-actions {
+        width: 50%;
     }
 
     .default-form {
