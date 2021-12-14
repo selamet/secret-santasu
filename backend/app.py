@@ -31,22 +31,71 @@ def send_mail(data):
     with app.app_context():
         msg = Message("Yeni Yıl Çekiliş Sonuçları :)", sender="admin.ping", recipients=[data[0].get('email', {})])
         # msg.body = f"{data[0].get('name', {})} sen {data[1].get('name', {})} e hediye alacaksın :)"
-        address = f"<strong> Adres:</strong> {data[1].get('address', {})} " if data[1].get('address', {}) else ""
 
-        msg.body = f"""<h1 style="text-align: center; color:#e91327">Mutlu Yıllar</h2>
-        <br>
-    <p style="text-align: center;">2021 yılında neşeniz, sağlığınız, mutluluğuz ve huzurunuz eksik olmasın. Mutlu yıllar dileriz.</p>
-    <br>
-    <div style="text-align: center;">
-        <p><span style="font-size: 53px; color: #e91327;">{data[0].get('name', {})} > {data[1].get('name', {})} </span>
-        <p></p>
-        <br>
-        Hediye alacaksın.
-        <br> 
-        <br> 
-        {address}
-        </p>
-    </div>"""
+        address = ''
+        if data[1].get('address', None):
+            address = f"""
+                    <tr>
+                        <td style="text-align:center; margin-left:auto; margin-right:auto; padding-top: 20px">
+                            <div style="background: #EFEFEF; padding: 10px 20px;border-radius: 4px;width: 70%;margin-left: auto;margin-right: auto;">
+                                <p style="text-align:center; color:#3A4149; font-size:18px; font-weight:300; padding-top:10px">
+                                    <span style="font-weight:400">Adres Bilgisi : </span> {data[1].get('address', "")}
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    """
+
+        msg.mod= f"""
+        <table style="width:100%; margin-bottom:40px">
+                <tr>
+                    <td style="text-align:center; margin-left:auto; margin-right:auto; padding-top: 40px">
+                        <img
+                            style="width:300px;height:300px"
+                            src ="https://i.hizliresim.com/2c63286.png" 
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <p style="text-align:center; font-size:30px; padding-top:20px; color: rgb(221, 76, 79);">
+                        Mutlu Yıllar {data[0].get('name', {})}
+                    </p>
+                </tr>
+                <tr>
+                    <p style="text-align:center; font-size:16px; font-weight:500; opacity: .8; padding-top:10px">
+                        2022 yılında neşeniz, sağlığınız, mutluluğuz ve huzurunuz eksik olmasın. Mutlu yıllar dileriz.
+                    </p>
+                </tr>
+                <tr>
+                    <p style="text-align:center">
+                        Hediye alacağın kişi
+                    </p>
+                </tr>
+                <tr>
+                    <td style="text-align:center; margin-left:auto; margin-right:auto; padding-top: 10px">
+                        <div style="background: rgb(221, 76, 79); padding: 10px 20px;border-radius: 4px;width: 300px;margin-left: auto;margin-right: auto;">
+                            <p style="text-align:center; color:white; font-size:18px; font-weight:600; padding-top:10px">
+                                {data[1].get('name', {})}
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+                {address}
+                <tr>
+                    <td style="width:70%">
+                        <div style="padding: 10px 20px;border-radius: 4px;width: 70%;margin-left: auto;margin-right: auto;">
+                            <p style="text-align:center; font-size:14px">
+                                Web sitemizi <a style="font-weight:400;" href="https://yilbasicekilisi.online/">buradan</a> ziyaret edebilir, 
+                                projenin kaynak kodlarına<a style="font-weight:400;" href="https://github.com/selamet/online-yilbasi-cekilisi"> 
+                                bu bağlantı</a> üzerinden ulaşabilirsiniz. Bize de hediye almak isterseniz
+                                <a style="font-weight:400;" href="https://kreosus.com/yilbasicekilisi">bu bağlantıyı </a>kullanabilirsiniz.
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        """
+
         msg.html = msg.body
         mail.send(msg)
 
