@@ -423,7 +423,7 @@ export default {
   data() {
     return {
       screenWidth       : '',
-      participants      : [{id: 1, isVisible: true, name: "", email: ""}],
+      participants      : [{id: 1, isVisible: true, name: "", email: "", lang: localStorage.getItem('lang') ? localStorage.getItem('lang') : 'tr'}],
       mailCheck         : true,
       addressStatus     : false,
       formValidation    : false,
@@ -456,12 +456,14 @@ export default {
           name      : '',
           email     : '',
           address   : '',
+          lang      : this.lang,
         })
         : this.participants.push({
           id        : id,
           isVisible : true,
           name      : '',
           email     : '',
+          lang      : this.lang,
         })
     },
     removeParticipant(index) {
@@ -549,7 +551,7 @@ export default {
             axios.post('https://api.yilbasicekilisi.online', this.participants).then((response) => {
                 this.showFinally();
                 this.addressStatus  = false;
-                this.participants   = [{ id: 1, name: '', email: '', isVisible:true }];
+                this.participants   = [{ id: 1, name: '', email: '', isVisible:true, lang: this.lang }];
             });
         }
     },
