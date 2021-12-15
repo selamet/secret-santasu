@@ -52,9 +52,8 @@
         </div>
       </div>
       <div
-        class="about-a1"
+        class="about-a2"
         style="
-          background: #f7f7f7;
           margin-top: 50px;
           padding-top: 75px;
           padding-bottom: 50px;
@@ -181,9 +180,8 @@
         </div>
       </div>
       <div
-        class="about-a1"
+        class="about-a2"
         style="
-          background: #f7f7f7;
           margin-top: 50px;
           padding-top: 75px;
           padding-bottom: 50px;
@@ -257,17 +255,13 @@
 
 
 <script>
-import CreateModal from "./CreateModal";
 
 export default {
   name: "app",
-  components: {
-    CreateModal,
-  },
   data() {
     return {
       canBeShown: false,
-      lang: localStorage.getItem('lang') ? localStorage.getItem('lang') : 'tr',
+      lang: localStorage.getItem('lang')
     };
   },
 };
@@ -340,6 +334,15 @@ export default {
   min-height: 100vh;
   display: flex;
   align-items: center;
+  background: white;
+}
+
+.about-a2 {
+  background: #DDDDDD;
+  min-height:100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .title-box {
