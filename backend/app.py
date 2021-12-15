@@ -1,11 +1,18 @@
-from flask import Flask, request, json, render_template
-from flask_mail import Mail, Message
-from celery_config import make_celery
-from flask_cors import CORS, cross_origin
-
-import time
-import ast
 import random
+
+from flask import Flask, json, render_template, request
+from flask_cors import CORS
+from flask_mail import Mail, Message
+
+from celery_config import make_celery
+
+from const import (
+    TR,
+    TR_BODY,
+    EN_BODY,
+    TR_MAIL_TEMPLATE,
+    EN_MAIL_TEMPLATE
+)
 
 app = Flask(__name__)
 
@@ -30,10 +37,12 @@ celery = make_celery(app)
 def send_mail(data):
     """Function to send emails."""
     with app.app_context():
-        msg = Message("Yeni Yıl Çekiliş Sonuçları :)", sender="admin.ping", recipients=[data[0].get('email', {})])
+        template, body = get_mail_template(data)
+        msg = Message(body, sender="admin.ping",
+                      recipients=[data[0].get('email', {})])
         # msg.body = f"{data[0].get('name', {})} sen {data[1].get('name', {})} e hediye alacaksın :)"
 
-        msg.body = render_template("email_template.html", data=data)
+        msg.body = render_template(template, data=data)
         msg.html = msg.body
         mail.send(msg)
 
@@ -81,3 +90,9 @@ def match_participants(data):
         val.append(r)
 
     return arr
+
+
+def get_mail_template(data):
+    if data.get("lang").lower() == TR:
+        return TR_MAIL_TEMPLATE, TR_BODY
+    return EN_MAIL_TEMPLATE, EN_BODY
