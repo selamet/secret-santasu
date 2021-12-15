@@ -1,5 +1,163 @@
 <template>
-  <div>
+  <div v-if="false">
+    <a href="#" @click.prevent="show" class="hvr-radial-out button-theme draw-button"
+    >Start a Giveaway!</a
+    >
+    <modal
+      name="create-modal"
+      :min-width="200"
+      :min-height="200"
+      :scrollable="true"
+      :reset="true"
+      :width="screenWidth"
+      height="auto"
+    >
+      <div class="header">
+        <h4>Merry Christmas...</h4>
+      </div>
+
+      <div style="margin-top: 10px" class="participants">
+        <div
+          class="participants-form-list"
+          v-for="(participant, index) in participants"
+          :key="index"
+        >
+          <div class="participant-form">
+            <div class="default-form">
+              <input
+                v-model="participant.name"
+                type="text"
+                name="name"
+                :placeholder="`${index+1}. Participant Name`"
+                class="nameInput"
+              />
+              <input
+                v-model="participant.email"
+                type="text"
+                name="email"
+                placeholder="E-Mail"
+                class="nameInput"
+              />
+              <button
+                class="remove-participant"
+                style="cursor: pointer;"
+                @click="removeParticipant(index)"
+              >
+                <span>Delete</span>
+                <span>x</span>
+              </button>
+            </div>
+            <div class="form-with-address">
+              <textarea
+                class="nameInput text-area"
+                v-if="addressStatus"
+                v-model="participant.address"
+                name="address"
+                placeholder="Address"
+              />
+            </div>
+          </div>
+          <span class="list-fix"></span>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="add-address">
+          <div class="add-address-btn">
+            <button
+              :class  ="[{'active-class' : addressStatus}, 'add-address-btn-item']" 
+              @click  ="selectAddAddress(true)">
+               + Add Address Information
+            </button>
+            <button
+              :class  ="[{'active-class' : !addressStatus}, 'add-address-btn-item']" 
+              @click  ="selectAddAddress(false)">
+              Adres Bilgisi Ekleme
+            </button>
+          </div>
+        </div>
+        <div class="add-participant">
+          <a
+            href="#"
+            @click="addParticipant()"
+          >+ Add Participant</a
+          >
+        </div>
+        <div class="buttons">
+          <a href="#" @click="createDraw()" class="hvr-radial-out button-theme start-draw"
+          >Let the Secret Santa Begin!</a
+          >
+        </div>
+
+        <p class="info-text">
+          Matches will be sent to each 
+          participant's email address.
+        </p>
+        <div style="height: 10px">
+
+        </div>
+      </div>
+    </modal>
+    <modal
+      name="finally-modal"
+      :min-width="200"
+      :min-height="200"
+      :scrollable="true"
+      :reset="true"
+      :width="screenWidth"
+      height="auto"
+    >
+      <div class="header">
+        <h4>Merry Christmas...</h4>
+      </div>
+
+      <div style="margin-top: 10px" class="finally-content">
+        <p>Congratulations your Secret Santa was successful. Please check your email. <br> <small>(Make
+          sure you check your spam box :)</small></p>
+        <img src="src/assets/img/gift.png" alt="" height="60%" width="60%">
+
+        <p>May your joy, health, happiness and peace be in 2022. We wish you a Merry Christmas.</p>
+        <p class="logos">
+
+          <span
+            onclick="window.open('https://github.com/selamet/online-yilbasi-cekilisi')"
+          ><i class="fab fa-github"></i></span>
+
+          <span
+            onclick="window.open('mailto:yeniyilcekilisi@gmail.com')"
+          ><i class="fas fa-envelope"></i></span>
+          <span
+            onclick="window.open('https://kreosus.com/yilbasicekilisi')"
+          ><i class="fas fa-gift"></i></span>
+
+        </p>
+
+      </div>
+      <div class="last-message">
+        <p>
+          This Project is developed by
+          <span
+            onclick="window.open('https://twitter.com/selametsamli')"
+          >Selamet Şamlı</span
+          >
+          ve
+          <span
+            onclick="window.open('https://twitter.com/ilteriskeskin')"
+          >Ali İlteriş Keskin</span
+          >
+          as a weekend project. The project is open
+          source, anyone wants to contribute can do so.
+        </p>
+        <p>
+          If you want to send a gift to us as well, you can do it via <span
+          onclick="window.open('https://twitter.com/ilteriskeskin')"
+        >here </span> :)<br>
+
+        </p>
+      </div>
+    </modal>
+  </div>
+
+  <div v-else>
     <a href="#" @click.prevent="show" class="hvr-radial-out button-theme draw-button"
     >Çekiliş Yap!</a
     >

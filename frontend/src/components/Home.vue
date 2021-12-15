@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="false">
     <div id="wish" class="about-box" style="padding-bottom: 0">
       <div class="about-a1">
         <div class="container">
@@ -107,6 +107,134 @@
                     target="_blank"
                     class="donate-button"
                     >Bize de Hediye Al</a>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12 text_align_center">
+                  <div class="last-img">
+                    <img
+                      class="img-responsive"
+                      src="src/assets/img/w2.png"
+                      alt="#"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div v-else>
+    <div id="wish" class="about-box" style="padding-bottom: 0">
+      <div class="about-a1">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="title-box">
+                <h2>Secret Santa</h2>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <div class="row align-items-center about-main-info">
+                <div class="col-lg-6 col-md-6 col-sm-12 text_align_center">
+                  <div class="full">
+                    <img
+                      class="img-responsive"
+                      src="src/assets/img/w1.png"
+                      alt="#"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                  <h2>
+                    <img
+                      style="width: 60px"
+                      src="src/assets/img//head_s.png"
+                      alt="#"
+                    />
+                    Christmas is soon!
+                  </h2>
+                  <p>
+                    The ones that want to spend their time on New Year's Eve with
+                    friends and make a Giveaway each other, takes pens and papers
+                    write their names on it, all the names goes to a small bag and
+                    Giveaway begins. The matched ones give gifts each other.
+
+                  </p>
+                  <p>
+                    
+                    One of the most enjoyable aspects of New Year's Eve is 
+                    such small games.
+                    You can easily organize Secret Santa via yilbasicekilisi.online,
+                    send matching results to participants emails.
+                  </p>
+                  <router-link class="go-form-button" to="/participants-form" tag= "a">Let the Secret Santa Begin </router-link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="about-a1"
+        style="
+          background: #f7f7f7;
+          margin-top: 50px;
+          padding-top: 75px;
+          padding-bottom: 50px;
+        "
+      >
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <div class="row align-items-center about-main-info">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                  <h2>
+                    <img
+                      style="width: 60px"
+                      src="src/assets/img/head_s.png"
+                      alt="#"
+                    />
+                    About Developers
+                  </h2>
+                  <p>
+                    This Project was developed by
+                    <span
+                      onclick="window.open('https://twitter.com/selametsamli')"
+                      >Selamet Şamlı</span
+                    >
+                    ,
+                    <span
+                      onclick="window.open('https://twitter.com/ilteriskeskin')"
+                      >Ali İlteriş Keskin</span
+                    > and
+                    <span
+                      onclick="window.open('https://twitter.com/uguryuceee')"
+                      >Uğur Yüce</span
+                    >
+                      as a weekend project. The project is open
+                      source, anyone wants to contribute can do so.
+                  </p>
+                  <p>
+                      If you want to send a gift to us as well, you send it via link down below
+                  </p>
+                  <a
+                    href="https://github.com/selamet/online-yilbasi-cekilisi/"
+                    class="github-button"
+                    target="_blank"
+                    >GitHub</a
+                  >
+
+                  <a
+                    href="https://kreosus.com/yilbasicekilisi"
+                    target="_blank"
+                    class="donate-button"
+                    >Send us a Gift too!</a>
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-sm-12 text_align_center">
