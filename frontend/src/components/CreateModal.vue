@@ -1,5 +1,5 @@
 <template>
-  <div v-if="false">
+  <div v-if="lang == 'en'">
     <a href="#" @click.prevent="show" class="hvr-radial-out button-theme draw-button"
     >Start a Giveaway!</a
     >
@@ -326,6 +326,7 @@ export default {
       participants: [{id: 1, name: "", email: ""}],
       mailCheck: true,
       addressStatus: false,
+      lang: localStorage.getItem('lang') ? localStorage.getItem('lang') : 'tr',
     };
   },
   created() {

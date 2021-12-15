@@ -1,5 +1,5 @@
 <template>
-  <div v-if="false">
+  <div v-if="lang == 'tr'">
     <div id="wish" class="about-box" style="padding-bottom: 0">
       <div class="about-a1">
         <div class="container">
@@ -267,6 +267,7 @@ export default {
   data() {
     return {
       canBeShown: false,
+      lang: localStorage.getItem('lang') ? localStorage.getItem('lang') : 'tr',
     };
   },
 };
