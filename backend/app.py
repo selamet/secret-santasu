@@ -40,7 +40,6 @@ def send_mail(data):
         template, body = get_mail_template(data)
         msg = Message(body, sender="admin.ping",
                       recipients=[data[0].get('email', {})])
-        # msg.body = f"{data[0].get('name', {})} sen {data[1].get('name', {})} e hediye alacaksın :)"
 
         msg.body = render_template(template, data=data)
         msg.html = msg.body
@@ -60,9 +59,6 @@ def hello_world():
             200,
             {"ContentType": "application/json"},
         )
-    # elif request.args:
-    #     r = request.args.to_dict()
-    #     print(r)
     else:
         return (
             json.dumps({"success": False}),
@@ -93,6 +89,6 @@ def match_participants(data):
 
 
 def get_mail_template(data):
-    if data.get("lang").lower() == TR:
+    if data[0]["lang"].lower() == TR:
         return TR_MAIL_TEMPLATE, TR_BODY
     return EN_MAIL_TEMPLATE, EN_BODY
