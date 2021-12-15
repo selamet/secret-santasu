@@ -1,6 +1,16 @@
 <template>
 
-  <router-view/>
+  <div>
+    <router-view/>
+    <div class="select">
+      <div class="select-wrapper">
+        <select>
+          <option value="tr">TR</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </div>
+  </div>
 
 </template>
 
@@ -22,11 +32,44 @@ export default {
 
 <style>
 
+.select {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper select {
+  -webkit-appearance: none;
+  appearance: none;
+  padding: 5px 30px 5px 20px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 1px 5px rgb(0 0 0 / 20%);
+  appearance: none;
+}
+
+.select-wrapper::after {
+  content: "▼";
+  font-size: 1rem;
+  top: 12px;
+  right: 10px;
+  position: absolute;
+}
+
 body {
     color: #666666;
     font-size: 15px;
     font-family: 'Poppins', sans-serif;
     line-height: 1.80857;
+}
+
+input, select, textarea {
+  outline: none!important;
 }
 
 

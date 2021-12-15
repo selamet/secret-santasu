@@ -1,5 +1,5 @@
 <template>
-    <div class="participants-form">
+    <div v-if="false" class="participants-form">
 
         <!-- HEADER -->
         <div class="participants-form-header">
@@ -200,6 +200,214 @@
                         </div>
                         <h3>
                             Tek başına çekiliş yapamazsın
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </modal>
+    </div>
+
+    <div v-else class="participants-form">
+
+        <!-- HEADER -->
+        <div class="participants-form-header">
+            <router-link class="home-button" to="/">
+                Homepage
+            </router-link>
+            <div class="add-participant">
+                <a
+                    href    ="#"
+                    @click  ="addParticipant()">
+                    + Add Participant
+                </a>
+            </div>
+        </div>
+        <div class="fix-style"></div>
+        
+        <!-- FORM -->
+        <div
+            class     ="participants-form-list"
+            v-for     ="(participant, index) in participants"
+            :key      ="index">
+
+            <div class="participants-number">
+                <span class="p-info-text"> {{ index + 1}}. PARTICIPANT INFORMATION </span>
+                <div class="participant-actions">
+                    <button
+                        class           ="remove-participant"
+                        style           ="cursor: pointer;"
+                        @click          ="removeParticipant(index)"
+                    >
+                            <span>Remove</span>
+                    </button>
+                    <button
+                        @click="viewToggleParticipant(participant)"
+                        class="hide-participant">
+                        <span> {{ toggleVisibleText(participant) }} </span>
+                    </button>
+                </div>
+            </div>
+            <div class="participant-form" v-if="participant.isVisible">
+                <div class="default-form">
+                    <input
+                        v-model         ="participant.name"
+                        type            ="text"
+                        name            ="name"
+                        placeholder     ="Participant Name"
+                        class           ="nameInput"
+                    />
+                    <input
+                        v-model         ="participant.email"
+                        type            ="text"
+                        name            ="email"
+                        placeholder     ="E-Mail"
+                        class           ="nameInput"
+                    />
+                </div>
+                <div class="form-with-address">
+                    <textarea
+                        class           ="nameInput text-area"
+                        v-if            ="addressStatus"
+                        v-model         ="participant.address"
+                        name            ="address"
+                        placeholder     ="Address"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="add-address">
+                <div class="add-address-btn">
+                    <button
+                        :class  ="[{'active-class' : addressStatus}, 'add-address-btn-item']" 
+                        @click  ="selectAddAddress(true)">
+                        + Add Address Information
+                    </button>
+                    <button
+                        :class  ="[{'active-class' : !addressStatus}, 'add-address-btn-item']" 
+                        @click  ="selectAddAddress(false)">
+                        Continue Without Adding
+                    </button>
+                </div>
+
+                <div class="create-button">
+                    <a 
+                        href    ="#" 
+                        @click  ="createDraw()" 
+                        class   ="create-button-item"
+                    >Let the Secret Santa Begin!</a
+                    >
+                </div>
+
+                <p class="info-text">
+                    Matches will be sent to each 
+                    participant's email address.
+                </p>
+            </div>
+        </div>
+
+
+        <!-- FINALLY MODAL -->
+        <modal
+            name        ="finally-modal"
+            :min-width  ="200"
+            :min-height ="200"
+            :scrollable ="true"
+            :reset      ="true"
+            :width      ="screenWidth"
+            height      ="auto"
+        >
+            
+            <div class="finally-content">
+                <span @click="closeModal()" class="close-modal">x</span>
+                <img
+                    class   ="finally-content-img" 
+                    src     ="src/assets/img/congrats.png" 
+                >
+                <p class="finally-content-title">
+                    Congratulations your Secret Santa was successful!
+                </p>
+                <p class="finally-content-text">
+                    Please check your email. Make sure you check your spam box too.
+                </p>
+
+                <div class="finally-content-buttons">
+                    <button
+                        onclick="window.open('https://github.com/selamet/online-yilbasi-cekilisi')">
+                        <i class="fab fa-github"></i>
+                        GitHub
+                    </button>
+
+                    <button
+                        onclick="window.open('mailto:yeniyilcekilisi@gmail.com')">
+                        <i class="fas fa-envelope"></i>
+                        E-Mail
+                    </button>
+                    
+                    <button
+                        onclick="window.open('https://kreosus.com/yilbasicekilisi')">
+                        <i class="fas fa-gift"></i>
+                        Donate
+                    </button>
+                </div>
+
+            </div>
+        </modal>
+
+        <!-- VALIDATION MODAL -->
+        <modal
+            name        ="validation-modal"
+            :min-width  ="200"
+            :min-height ="200"
+            :scrollable ="true"
+            :reset      ="true"
+            :width      ="screenWidth"
+            height      ="auto"
+        >
+            
+            <div class="validation-content" >
+                <span @click="closeModalValidation()" class="close-modal">x</span>
+                <div v-if="getEmptyField.length || getMailNotValid.length">
+                    <div class="validation-content-title">
+                        <div class="image">
+                            <img src="src/assets/img/warning.png">
+                        </div>
+                        <h3 v-if="getEmptyField.length || getMailNotValid.length">
+                            Check the fields that specified down below
+                        </h3>
+                    </div>
+                    <div 
+                        v-if    ="getEmptyField.length" 
+                        class   ="validation-empty-field">
+                        <h5>Empty Fields</h5>
+                        <div 
+                            class   ="list" 
+                            v-for   ="(item, index) in getEmptyField" 
+                            :key    ="index">
+                            <span class="item">{{ item }}</span>
+                        </div>
+                    </div>
+                    <div 
+                        v-if    ="getMailNotValid.length" 
+                        class   ="validation-mail-valid">
+                        <h5>Invalid E-Mail Fields</h5>
+                        <div 
+                            class   ="list" 
+                            v-for   ="(item, index) in getMailNotValid" 
+                            :key    ="index">
+                            <span class="item">{{ item }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div v-else-if="!getNumberOfParticipantsOnePerson">
+                    <div class="validation-content-title">
+                        <div class="image">
+                            <img src="src/assets/img/warning.png">
+                        </div>
+                        <h3>
+                            You can not make Secret Santa by yourself :(
                         </h3>
                     </div>
                 </div>
