@@ -1,5 +1,5 @@
 <template>
-    <div v-if="false" class="participants-form">
+    <div v-if="lang == 'tr'" class="participants-form">
 
         <!-- HEADER -->
         <div class="participants-form-header">
@@ -426,7 +426,8 @@ export default {
       participants      : [{id: 1, isVisible: true, name: "", email: ""}],
       mailCheck         : true,
       addressStatus     : false,
-      formValidation    : false
+      formValidation    : false,
+      lang              : localStorage.getItem('lang') ? localStorage.getItem('lang') : 'tr',
     };
   },
   created() {
