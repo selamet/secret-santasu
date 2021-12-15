@@ -19,8 +19,8 @@ app.secret_key = app.config["SECRET_KEY"]
 mail = Mail(app)
 
 app.config.update(
-    CELERY_BROKER_URL="redis://localhost:6379",
-    CELERY_RESULT_BACKEND="redis://localhost:6379",
+    CELERY_BROKER_URL="redis://redis:6379",
+    CELERY_RESULT_BACKEND="redis://redis:6379",
 )
 celery = make_celery(app)
 
