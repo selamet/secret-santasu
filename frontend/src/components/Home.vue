@@ -260,8 +260,7 @@ export default {
   name: "app",
   data() {
     return {
-      canBeShown: false,
-      lang: localStorage.getItem('lang')
+      lang: localStorage.getItem('lang') ? localStorage.getItem('lang') : 'tr',
     };
   },
 };
