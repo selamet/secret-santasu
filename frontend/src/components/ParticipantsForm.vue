@@ -427,7 +427,7 @@ export default {
       mailCheck         : true,
       addressStatus     : false,
       formValidation    : false,
-      lang              : localStorage.getItem('lang'),
+      lang              : localStorage.getItem('lang') ? localStorage.getItem('lang') : 'tr',
     };
   },
   created() {
