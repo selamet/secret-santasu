@@ -423,11 +423,11 @@ export default {
   data() {
     return {
       screenWidth       : '',
-      participants      : [{id: 1, isVisible: true, name: "", email: ""}],
+      participants      : [{id: 1, isVisible: true, name: "", email: "",}],
       mailCheck         : true,
       addressStatus     : false,
       formValidation    : false,
-      lang              : localStorage.getItem('lang') ? localStorage.getItem('lang') : 'tr',
+      lang              : localStorage.getItem('lang'),
     };
   },
   created() {
@@ -455,13 +455,13 @@ export default {
           isVisible : true,
           name      : '',
           email     : '',
-          address   : '',
+          address   : ''
         })
         : this.participants.push({
           id        : id,
           isVisible : true,
           name      : '',
-          email     : '',
+          email     : ''
         })
     },
     removeParticipant(index) {
@@ -472,8 +472,12 @@ export default {
     },
     toggleVisibleText(item) {
         return item.isVisible
-          ? 'Gizle'
-          : 'Göster'
+          ? this.lang == 'tr'
+            ? 'Gizle'
+            : 'Hide'
+          : this.lang == 'en'
+            ? 'Show'
+            : 'Göster'
     },
     selectAddAddress(hasAddress) {
         this.addressStatus = hasAddress;
@@ -545,11 +549,13 @@ export default {
         }
 
         this.participants.map(item => delete item.isVisible)
+        this.participants.map(item => item.lang = this.lang)
+        console.log("this part =>", this.participants)
+        return
         if (this.formValidation) {
             axios.post('https://api.yilbasicekilisi.online', this.participants).then((response) => {
                 this.showFinally();
                 this.addressStatus  = false;
-                this.participants   = [{ id: 1, name: '', email: '', isVisible:true }];
             });
         }
     },
