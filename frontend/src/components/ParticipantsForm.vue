@@ -550,8 +550,7 @@ export default {
 
         this.participants.map(item => delete item.isVisible)
         this.participants.map(item => item.lang = this.lang)
-        console.log("this part =>", this.participants)
-        return
+        
         if (this.formValidation) {
             axios.post('https://api.yilbasicekilisi.online', this.participants).then((response) => {
                 this.showFinally();
