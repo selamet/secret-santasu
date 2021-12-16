@@ -54,7 +54,6 @@
       <div
         class="about-a2"
         style="
-          margin-top: 50px;
           padding-top: 75px;
           padding-bottom: 50px;
         "
@@ -182,7 +181,6 @@
       <div
         class="about-a2"
         style="
-          margin-top: 50px;
           padding-top: 75px;
           padding-bottom: 50px;
         "
