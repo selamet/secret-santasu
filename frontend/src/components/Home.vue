@@ -337,7 +337,7 @@ export default {
 }
 
 .about-a2 {
-  background: #DDDDDD;
+  background: #F3F4F6;
   min-height:100vh;
   display: flex;
   align-items: center;

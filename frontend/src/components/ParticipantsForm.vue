@@ -514,13 +514,17 @@ export default {
         this.participants.map((participant, index) => {
             if (!reg.test(participant.email) && participant.email) {
                 hasMailNotValid.push({
-                    label   : `${index+1}. Katılımcı`
+                    label : this.lang === 'tr'
+                            ? `${index+1}. Katılımcı`
+                            : `${index+1}. Participant`
                 })
             }
 
             if (!participant.name || !participant.email) {
                 hasEmptyField.push({
-                    label   : `${index+1}. Katılımcı`
+                    label : this.lang === 'tr'
+                            ? `${index+1}. Katılımcı`
+                            : `${index+1}. Participant`
                 })
             }
         })
