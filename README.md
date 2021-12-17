@@ -1,12 +1,12 @@
 
 
-#### Online olarak yılbaşı çekilişi yapmanızı sağlayan uygulamadır.
-* Eşleşmeler rastgele yapılmaktadır.
-* Sonuçlar her bir katılımcının mail adresine gönderilmektedir.
+#### It is an application that allows you to make New Year's draws online..
+* Matches are made randomly.
+* Results are sent to each participant's e-mail address.
 
-### Katkıda Bulunmak İçin
+### About Project
 
-* Frontend Vue.js ile yazılmıştır
-* Backend Flask ile yazılmıştır
-* Dizinlerin içinde kurulum ve çalıştırma için gerekli adımlar yazılmıştır.
-* Dileyen herkes katkıda bulunabilir :)
+* We are use Vue.js to front-end.
+* We are use Falsk to backend.
+* How to run the application is available in the readme.md file.
+* Anyone who wishes can contribute to the application :)
