@@ -40,7 +40,7 @@
                   </p>
                   <p>
                     Yılbaşının en keyifli yanlarından biri de bu tür küçük
-                    oyunlardır. Yılbaşı hediye çekilişini yilbasicekilisi.tech
+                    oyunlardır. Yılbaşı hediye çekilişini yilbasicekilisi.online
                     üzerinden kolayca organize edebilir, eşleşme sonucunu
                     herkesin mail adresine gönderebilirsin.
                   </p>
