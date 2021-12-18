@@ -7,6 +7,6 @@
 ### About Project
 
 * We are use Vue.js to front-end.
-* We are use Falsk to backend.
+* We are use Flask to backend.
 * How to run the application is available in the readme.md file.
 * Anyone who wishes can contribute to the application :)
