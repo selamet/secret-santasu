@@ -23,7 +23,7 @@ CELERY_RESULT_BACKEND = "redis://localhost:6379"
 
 * open 3 terminal
  * Terminal 1: python3 wsgi.py
- * Terminal 2: celery -A app.celery worker -l info
+ * Terminal 2: celery -A backend.celery_worker.celery worker --loglevel=info
  * Terminal 3: curl -i -X POST -d "[{'name': 'ali', 'email': 'aliilteriskeskin@gmail.com'}, {'name': 'selo', 'email': 'selamet96@gmail.com'}, {'name': 'ugi', 'email': 'uguryuce93@gmail.com'}]" localhost:5000
 
 **Error Note:**
