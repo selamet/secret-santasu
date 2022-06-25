@@ -1,22 +1,18 @@
-FROM python:3.9.5-slim-buster
+# Dockerfile
 
+# pull the official docker image
+FROM python:3.9.4-slim
+
+# set work directory
 WORKDIR /app
 
+# set env variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-RUN apt-get update \
-    # dependencies for building Python packages
-    && apt-get install -y build-essential \
-    # psycopg2 dependencies
-    && apt-get install -y libpq-dev \
-    # cleaning up unused files
-    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
-    && rm -rf /var/lib/apt/lists/*
+# install dependencies
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 
-RUN pip install --upgrade pip
-COPY ./requirements.txt /app/requirements.txt
-RUN --mount=type=cache,target=/root/.cache \
-    pip install -r requirements.txt
-
-COPY . /app/
+# copy project
+COPY . .
