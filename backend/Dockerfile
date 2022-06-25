@@ -1,18 +1,14 @@
-# Dockerfile
 
-# pull the official docker image
-FROM python:3.9.4-slim
-
-# set work directory
+FROM python:3.8-slim-buster
 WORKDIR /app
-
-# set env variables
 ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
-# install dependencies
-COPY requirements.txt .
+ENV PYTHONBUFFERED 1
+# install system dependencies
+RUN apt-get update \
+  && apt-get -y install netcat gcc postgresql \
+  && apt-get clean
+# install python dependencies
+RUN pip install --upgrade pip
+COPY ./requirements.txt /app/requirements.txt
 RUN pip install -r requirements.txt
-
-# copy project
-COPY . .
+COPY . /app
