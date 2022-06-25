@@ -1,4 +1,5 @@
 amqp==5.0.2
+anyio==3.6.1
 appnope==0.1.2
 backcall==0.2.0
 billiard==3.6.3.0
@@ -9,9 +10,10 @@ click-didyoumean==0.0.3
 click-plugins==1.1.1
 click-repl==0.1.6
 decorator==4.4.2
-Flask==1.1.2
+fastapi==0.78.0
 Flask-Cors==3.0.9
 Flask-Mail==0.9.1
+idna==3.3
 ipdb==0.13.4
 ipython==7.19.0
 ipython-genutils==0.2.0
@@ -25,12 +27,16 @@ pexpect==4.8.0
 pickleshare==0.7.5
 prompt-toolkit==3.0.8
 ptyprocess==0.6.0
+pydantic==1.9.1
 Pygments==2.7.3
 python-dotenv==0.15.0
 pytz==2020.4
 redis==3.5.3
 six==1.15.0
+sniffio==1.2.0
+starlette==0.19.1
 traitlets==5.0.5
+typing_extensions==4.2.0
 vine==5.0.0
 wcwidth==0.2.5
 Werkzeug==1.0.1
