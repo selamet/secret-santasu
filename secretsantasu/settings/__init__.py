@@ -1,4 +1,4 @@
-from .base import *
+from secretsantasu.settings.base import *
 
 if env("ENV_NAME") == 'production':
     from .prod import *

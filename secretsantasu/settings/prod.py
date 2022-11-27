@@ -1,8 +1,4 @@
-import environ
-
-env = environ.Env(
-    DEBUG=(bool, False)
-)
+from secretsantasu.settings import env
 
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = env("DEBUG")

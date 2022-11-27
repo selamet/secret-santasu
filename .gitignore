@@ -140,6 +140,7 @@ GitHub.sublime-settings
 
 .DS_Store
 *staticfiles/
-.idea/
 *.iml
-*.log
+
+.idea/misc.xml
+.idea/secret-santasu.iml
