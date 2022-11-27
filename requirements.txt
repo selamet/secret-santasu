@@ -7,6 +7,7 @@ Django==4.1.3
 django-cors-headers==3.13.0
 django-environ==0.9.0
 django-extensions==3.2.1
+django-filter==22.1
 djangorestframework==3.14.0
 environ==1.0
 executing==1.2.0

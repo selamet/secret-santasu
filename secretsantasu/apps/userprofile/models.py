@@ -9,7 +9,5 @@ class UserProfile(models.Model):
     company = models.CharField(max_length=100, blank=True)
     address = models.CharField(max_length=255, blank=True)
 
-    # other fields here
-
     def __str__(self):
-        return self.user.username
+        return self.user.email
