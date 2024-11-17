@@ -1,7 +1,7 @@
+from datetime import timedelta
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -14,10 +14,10 @@ INSTALLED_APPS = [
     # Local apps
     "apps.user",
 
-
     # Third-party apps
     "django_extensions",
     "corsheaders",
+    "rest_framework"
 
 ]
 
@@ -56,7 +56,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'santasdraw.wsgi.application'
 
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -83,3 +82,17 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=14),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=14),
+}
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
