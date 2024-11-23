@@ -13,7 +13,7 @@ INSTALLED_APPS = [
 
     # Local apps
     "apps.user",
-
+    "apps.draw",
     # Third-party apps
     "django_extensions",
     "corsheaders",
@@ -87,7 +87,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
+    )
 }
 
 SIMPLE_JWT = {
